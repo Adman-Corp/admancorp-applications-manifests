@@ -1,0 +1,29 @@
+# Default values for demo-app
+name: demo-app
+namespace: default
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.27"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+httproute:
+  hostname: app.dev.admancorp.com
+  gateway:
+    name: admancorp-envoy
+    namespace: networking
